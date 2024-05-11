@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '1.2.1'
+}
+
+group 'de.snagel'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation 'com.google.javascript:closure-compiler-unshaded:v20231112'
+    implementation 'com.helger:ph-css:7.0.1'
+    implementation 'org.codehaus.groovy:groovy:3.0.20'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+}
+
+tasks.withType(Javadoc).all { enabled = false }
+
+gradlePlugin {
+    plugins {
+        webMinifyPlugin {
+            id = 'web-minify'
+            description = 'no description'
+            implementationClass = 'de.snagel.web.minify.WebMinifyPlugin'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
