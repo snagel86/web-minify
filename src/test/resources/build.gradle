@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'web-minify'
+}
+
+webMinify {
+    script {
+        // JavaScripts from webflow
+        js {
+            inDir = file("$projectDir/webflow.js")
+            outDir = file("$projectDir/js")
+        }
+    }
+}
+
+tasks.named('build').configure { dependsOn('jsMinify') }

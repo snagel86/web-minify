@@ -1,0 +1,12 @@
+rootProject.name = 'web-minify-test'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        // plugin dependencies
+        classpath 'de.snagel:web-minify:1.0-SNAPSHOT'
+    }
+}
